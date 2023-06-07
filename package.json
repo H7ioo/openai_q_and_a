@@ -1,0 +1,21 @@
+{
+  "name": "openaitextembedding",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc index.ts && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dqbd/tiktoken": "^1.0.7",
+    "dotenv": "^16.1.4",
+    "gpt-tokenizer": "^2.1.1",
+    "openai": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5"
+  },
+  "description": ""
+}
