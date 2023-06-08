@@ -206,10 +206,10 @@ function conclusion(answers, question) {
                     _b.label = 3;
                 case 3:
                     _b.trys.push([3, 5, , 6]);
-                    sleep(2000);
+                    sleep(1500);
                     return [4 /*yield*/, openai.createCompletion({
                             model: "text-davinci-003",
-                            prompt: "Remove unnecessary text from the following context: \"\"\"".concat(chunk, "\"\"\" and answer the following question: ").concat(question),
+                            prompt: "Use the provided context delimited by triple quotes to answer questions. The context: \"\"\"".concat(chunk, "\"\"\".\nThe question: ").concat(question),
                             temperature: 0.2,
                             max_tokens: 500,
                             // top_p: 1.0,
@@ -286,6 +286,7 @@ function sleep(ms) {
                             case 3:
                                 res = _b.sent();
                                 answer = (_a = res.data.choices[0].message) === null || _a === void 0 ? void 0 : _a.content;
+                                console.log(answer, "here");
                                 if (answer) {
                                     isAnswerFailed = checkIsAnswerFailed(answer);
                                     if (isAnswerFailed) {
@@ -314,6 +315,7 @@ function sleep(ms) {
                             case 9:
                                 finalAnswer = _b.sent();
                                 console.log(finalAnswer);
+                                console.log(answers);
                                 answers = [];
                                 // userMessages.push({ role: "user", content: input });
                                 userUI.prompt();
@@ -337,3 +339,4 @@ function sleep(ms) {
 //   presence_penalty: 0,
 //   stop: null,
 // });
+// TODO: Accuracy, optimization, summarizing summary data. Loading chunks twice problem. It should load once
