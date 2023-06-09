@@ -185,7 +185,7 @@ async function conclusion(answers: string[], question: string) {
       console.log(error);
     }
 
-    return lastResponse;
+    return lastResponse.trim();
   }
 }
 
@@ -232,8 +232,8 @@ function sleep(ms: number) {
         });
         // Check answer if it does contains FAIL answers. If it does skip iteration.
         const answer = res.data.choices[0].message?.content;
-        console.log(answer, "here");
         if (answer) {
+          console.log("Chunks answer: ", answer?.trim());
           const isAnswerFailed = checkIsAnswerFailed(answer);
           if (isAnswerFailed) {
             continue;
@@ -249,8 +249,7 @@ function sleep(ms: number) {
       await sleep(500);
     }
     const finalAnswer = await conclusion(answers, input);
-    console.log(finalAnswer);
-    console.log(answers);
+    console.log("Final answer: ", finalAnswer);
     answers = [];
     // userMessages.push({ role: "user", content: input });
     userUI.prompt();
